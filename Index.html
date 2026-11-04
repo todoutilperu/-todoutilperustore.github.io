@@ -1,93 +1,528 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todo Útil Perú Store | Cosméticos Yanbal y Hogar</title>
-    <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; }
-        body { background-color: #f8f9fa; color: #212529; line-height: 1.5; }
-        
-        /* Banner deslizante */
-        .marquee-container { background: #d63384; color: white; overflow: hidden; white-space: nowrap; padding: 0.5rem 0; font-size: 0.9rem; font-weight: bold; }
-        .marquee-text { display: inline-block; animation: marquee 18s linear infinite; }
-        @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo Útil Perú Store | Cosméticos & Hogar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --yanbal-pink: #d63384;
+      --yanbal-dark: #a81c60;
+      --wa-green: #25d366;
+      --wa-dark: #1da851;
+      --bg-light: #f8f9fa;
+      --text-main: #2c3e50;
+      --accent-red: #ff4757;
+      --accent-yellow: #ffa502;
+    }
 
-        header { background: linear-gradient(135deg, #2c3e50, #1a252f); color: white; text-align: center; padding: 1.5rem 1rem; }
-        header h1 { font-size: 1.8rem; margin-bottom: 0.3rem; }
-        header p { font-size: 0.95rem; opacity: 0.9; }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
+    body { background-color: var(--bg-light); color: var(--text-main); padding-bottom: 70px; }
 
-        /* Aviso de compra en vivo */
-        .live-alert { background: #e8f5e9; color: #2e7d32; text-align: center; padding: 0.5rem; font-size: 0.85rem; font-weight: 500; border-bottom: 1px solid #c8e6c9; }
+    /* Top Announcement Bar */
+    .marquee-container {
+      background: linear-gradient(90deg, var(--yanbal-pink), var(--yanbal-dark));
+      color: white;
+      padding: 8px 0;
+      overflow: hidden;
+      white-space: nowrap;
+      font-size: 0.85rem;
+      font-weight: 600;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .marquee-content { display: inline-block; animation: marquee 18s linear infinite; }
+    @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
-        .container { max-width: 800px; margin: 0 auto; padding: 1rem; }
-        .category-title { font-size: 1.3rem; margin: 1.5rem 0 1rem; color: #2c3e50; border-bottom: 2px solid #e9ecef; padding-bottom: 0.3rem; }
-        
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
-        .card { background: white; border-radius: 10px; padding: 1rem; box-shadow: 0 2px 5px rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; }
-        
-        /* Etiqueta de Oferta */
-        .badge-oferta { position: absolute; top: 10px; right: 10px; background: #ff4757; color: white; font-size: 0.75rem; font-weight: bold; padding: 0.2rem 0.5rem; border-radius: 4px; }
+    /* Header & Search */
+    header {
+      background: white;
+      padding: 15px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+    .header-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .brand-logo { font-weight: 800; font-size: 1.2rem; color: var(--yanbal-pink); text-transform: uppercase; }
+    .admin-btn { background: #e9ecef; border: none; padding: 6px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; cursor: pointer; }
+    
+    .search-box { position: relative; }
+    .search-box input {
+      width: 100%;
+      padding: 10px 15px;
+      border: 2px solid #e9ecef;
+      border-radius: 25px;
+      outline: none;
+      font-size: 0.9rem;
+      transition: all 0.3s;
+    }
+    .search-box input:focus { border-color: var(--yanbal-pink); }
 
-        .card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; color: #333; }
-        .card p { font-size: 0.9rem; color: #666; margin-bottom: 1rem; }
-        .btn-whatsapp { background-color: #25d366; color: white; text-decoration: none; text-align: center; padding: 0.6rem; border-radius: 5px; font-weight: bold; font-size: 0.95rem; display: block; }
-        
-        footer { text-align: center; padding: 2rem; color: #888; font-size: 0.85rem; }
-    </style>
+    .container { padding: 15px; max-width: 600px; margin: 0 auto; }
+
+    /* 💣 OFERTA BOMBA (MISTERIO & EXPLOSIÓN) */
+    .bomba-card {
+      background: linear-gradient(135deg, #1e1e2f, #2a2a40);
+      color: white;
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 25px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border: 2px solid var(--accent-red);
+      box-shadow: 0 8px 20px rgba(255, 71, 87, 0.25);
+    }
+    .bomba-tag {
+      background: var(--accent-red);
+      color: white;
+      font-weight: 800;
+      font-size: 0.75rem;
+      padding: 4px 12px;
+      border-radius: 12px;
+      display: inline-block;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .bomba-icon {
+      font-size: 3.5rem;
+      display: inline-block;
+      animation: bombVibrate 0.6s infinite alternate;
+      cursor: pointer;
+      user-select: none;
+    }
+    @keyframes bombVibrate {
+      0% { transform: scale(1) rotate(-3deg); }
+      100% { transform: scale(1.1) rotate(3deg); }
+    }
+
+    .bomba-timer {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--accent-yellow);
+      margin: 10px 0;
+      letter-spacing: 2px;
+    }
+
+    /* Secret Revealed State */
+    .bomba-revealed { display: none; text-align: center; animation: popIn 0.5s ease; }
+    @keyframes popIn { 0% { transform: scale(0.8); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+
+    .bomba-product-img { width: 100px; height: 100px; object-fit: cover; border-radius: 10px; margin: 10px 0; }
+
+    /* ⚡ OFERTA RELÁMPAGO DEL DÍA */
+    .relampago-card {
+      background: white;
+      border-radius: 16px;
+      padding: 15px;
+      margin-bottom: 25px;
+      border: 2px solid var(--accent-yellow);
+      box-shadow: 0 4px 12px rgba(255, 165, 0, 0.15);
+    }
+    .relampago-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .relampago-title { font-weight: 700; color: #d35400; font-size: 1rem; }
+    .relampago-timer { background: #fff3cd; color: #856404; padding: 4px 8px; border-radius: 8px; font-weight: 700; font-size: 0.8rem; }
+    
+    .progress-bar-bg { background: #e9ecef; height: 10px; border-radius: 5px; overflow: hidden; margin: 8px 0; }
+    .progress-bar-fill { background: linear-gradient(90deg, #ff9f43, #ee5253); height: 100%; width: 75%; border-radius: 5px; }
+
+    /* Categories Navigation */
+    .categories { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 10px; margin-bottom: 15px; scrollbar-width: none; }
+    .cat-btn {
+      background: white;
+      border: 1px solid #dee2e6;
+      padding: 8px 16px;
+      border-radius: 20px;
+      white-space: nowrap;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #6c757d;
+      cursor: pointer;
+    }
+    .cat-btn.active { background: var(--yanbal-pink); color: white; border-color: var(--yanbal-pink); }
+
+    /* Product Grid */
+    .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .product-card {
+      background: white;
+      border-radius: 12px;
+      padding: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+    .badge {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background: var(--accent-red);
+      color: white;
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+    .product-img { width: 100%; height: 120px; object-fit: cover; border-radius: 8px; margin-bottom: 8px; }
+    .product-title { font-size: 0.85rem; font-weight: 600; line-height: 1.2; margin-bottom: 5px; height: 2.4em; overflow: hidden; }
+    .product-price { font-size: 1rem; font-weight: 800; color: var(--yanbal-pink); }
+    .product-stock { font-size: 0.7rem; color: #e67e22; font-weight: 600; margin-bottom: 8px; }
+    
+    .qty-picker { display: flex; align-items: center; gap: 5px; margin-bottom: 8px; }
+    .qty-btn { background: #edf2f7; border: none; width: 22px; height: 22px; border-radius: 4px; font-weight: bold; cursor: pointer; }
+    .qty-val { font-size: 0.8rem; font-weight: 600; }
+
+    .btn-wa {
+      background: var(--wa-green);
+      color: white;
+      border: none;
+      width: 100%;
+      padding: 8px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    /* Floating WA Button */
+    .floating-wa {
+      position: fixed;
+      bottom: 15px;
+      right: 15px;
+      background: var(--wa-green);
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+      z-index: 99;
+      text-decoration: none;
+    }
+
+    /* Social Proof Notification */
+    .social-proof {
+      position: fixed;
+      bottom: 15px;
+      left: 15px;
+      background: white;
+      padding: 8px 12px;
+      border-radius: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.75rem;
+      z-index: 98;
+      border-left: 4px solid var(--wa-green);
+      animation: slideUp 0.5s ease;
+    }
+
+    /* Admin Modal */
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 200; align-items: center; justify-content: center; }
+    .modal-content { background: white; width: 90%; max-width: 450px; border-radius: 16px; padding: 20px; max-height: 85vh; overflow-y: auto; }
+    .form-group { margin-bottom: 12px; }
+    .form-group label { display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 4px; }
+    .form-group input, .form-group select { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 6px; }
+    .admin-list-item { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; padding: 8px 0; font-size: 0.8rem; }
+  </style>
 </head>
 <body>
 
-    <!-- Banner en movimiento -->
-    <div class="marquee-container">
-        <div class="marquee-text">🔥 ¡Bienvenidos a Todo Útil Perú Store! Envios seguros a todo Lima y provincias. 🚚 Cosméticos Yanbal originales y organizadores para el hogar al mejor precio. ✨</div>
+  <!-- Announcement Marquee -->
+  <div class="marquee-container">
+    <div class="marquee-content">
+      🔥 ¡ENVÍOS GARANTIZADOS A TODO LIMA Y PROVINCIAS! 🚚 Cosméticos Yanbal 100% Originales y Organizadores del Hogar ✨
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="header-top">
+      <div class="brand-logo">Todo Útil Perú Store</div>
+      <button class="admin-btn" onclick="openAdmin()">⚙️ Panel Admin</button>
+    </div>
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Buscar cosméticos, organizadores..." oninput="filterProducts()">
+    </div>
+  </header>
+
+  <div class="container">
+
+    <!-- 💣 1. SECCIÓN OFERTA BOMBA (MISTERIO & EXPLOSIÓN) -->
+    <div class="bomba-card">
+      <div id="bombaCover">
+        <span class="bomba-tag">💣 ¡OFERTA BOMBA A LA VISTA!</span>
+        <p style="font-size: 0.8rem; opacity: 0.9;">¡Presiona la bomba o espera la explosión!</p>
+        <div class="bomba-icon" onclick="revealBombaSecret()">💣</div>
+        <div class="bomba-timer" id="bombaTimer">02:15:00</div>
+        <p style="font-size: 0.75rem; color: #aaa;">Revelará un descuento secreto exclusivo</p>
+      </div>
+
+      <!-- Secret Unlocked Screen -->
+      <div id="bombaSecret" class="bomba-revealed">
+        <span class="bomba-tag" style="background: var(--wa-green);">💥 ¡OFERTA BOMBA DESBLOQUEADA!</span>
+        <h4 style="color: var(--accent-yellow);">Set Yanbal Totalist + Espejo Portátil</h4>
+        <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=300&q=80" class="bomba-product-img" alt="Yanbal Offer">
+        <p style="font-size: 0.85rem;">Precio Normal: <s style="color: #bbb;">S/ 85.00</s></p>
+        <p style="font-size: 1.3rem; font-weight: 800; color: #25d366;">Precio Bomba: S/ 49.90</p>
+        <a id="bombaWaBtn" href="#" class="btn-wa" style="margin-top: 10px;" target="_blank">📲 ¡PEDIR OFERTA BOMBA!</a>
+      </div>
     </div>
 
-    <header>
-        <h1>Todo Útil Perú Store</h1>
-        <p>Cosméticos Yanbal y Artículos Útiles para el Hogar</p>
-    </header>
-
-    <!-- Alerta de compra reciente -->
-    <div class="live-alert">
-        🛍️ ¡María de La Victoria acaba de separar su set de perfumes Yanbal hace un momento!
+    <!-- ⚡ 2. SECCIÓN OFERTA RELÁMPAGO DEL DÍA -->
+    <div class="relampago-card">
+      <div class="relampago-header">
+        <div class="relampago-title">⚡ Oferta Relámpago del Día</div>
+        <div class="relampago-timer" id="relampagoTimer">Termina en: 05:42:10</div>
+      </div>
+      <p style="font-size: 0.8rem; font-weight: 600;">Organizador Multiuso Plegable de Cocina</p>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill"></div>
+      </div>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 5px;">
+        <span style="font-size: 0.75rem; color: #e67e22; font-weight: 700;">🔥 ¡75% reservado! Quedan 3</span>
+        <span style="font-weight: 800; color: var(--yanbal-pink); font-size: 1.1rem;">S/ 24.90</span>
+      </div>
+      <a href="https://wa.me/51902160927?text=Hola%20Todo%20%C3%9Atil%20Per%C3%BA%20Store,%20quiero%20la%20Oferta%20Rel%C3%A1mpago%20Organizador%20Cocina" class="btn-wa" style="margin-top: 10px;" target="_blank">⚡ ¡Reservar Oferta Relámpago!</a>
     </div>
 
-    <div class="container">
-        <h2 class="category-title">✨ Cosméticos y Fragancias Yanbal</h2>
-        <div class="grid">
-            <div class="card">
-                <span class="badge-oferta">OFERTA</span>
-                <h3>Perfumes y Colonias</h3>
-                <p>Fragancias exclusivas para dama y caballero con excelente fijación y descuento especial.</p>
-                <a href="https://wa.me/51902160927?text=Hola%2C%20quiero%20consultar%20el%20catálogo%20y%20ofertas%20de%20perfumes%20Yanbal" class="btn-whatsapp" target="_blank">Consultar por WhatsApp</a>
-            </div>
-            <div class="card">
-                <h3>Maquillaje y Cuidado</h3>
-                <p>Polvos, labiales, tratamientos faciales y alta cosmética de temporada.</p>
-                <a href="https://wa.me/51902160927?text=Hola%2C%20estoy%20interesada%20en%20los%20productos%20de%20maquillaje%20Yanbal" class="btn-whatsapp" target="_blank">Consultar por WhatsApp</a>
-            </div>
+    <!-- Category Filters -->
+    <div class="categories">
+      <button class="cat-btn active" onclick="setCategory('todos', this)">Todos</button>
+      <button class="cat-btn" onclick="setCategory('yanbal', this)">Cosméticos Yanbal</button>
+      <button class="cat-btn" onclick="setCategory('hogar', this)">Organizadores Hogar</button>
+      <button class="cat-btn" onclick="setCategory('combos', this)">Kits & Combos</button>
+    </div>
+
+    <!-- Main Product Grid -->
+    <div class="product-grid" id="productGrid"></div>
+
+  </div>
+
+  <!-- WhatsApp Floating Button -->
+  <a href="https://wa.me/51902160927?text=Hola%20Todo%20%C3%9Atil%20Per%C3%BA%20Store,%20tengo%20una%20consulta" class="floating-wa" target="_blank">📲</a>
+
+  <!-- Live Social Proof Notification -->
+  <div class="social-proof" id="socialProof">
+    <span>🛒</span>
+    <div>
+      <strong id="spUser">Rosa de La Victoria</strong> compró recién<br>
+      <small id="spProduct" style="color: #6c757d;">Perfume Ccori Yanbal</small>
+    </div>
+  </div>
+
+  <!-- Admin Modal Panel (/admin) -->
+  <div class="modal" id="adminModal">
+    <div class="modal-content">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+        <h3 style="font-size: 1rem;">⚙️ Panel Admin / Inventario</h3>
+        <button onclick="closeAdmin()" style="border:none; background:none; font-size: 1.2rem; cursor:pointer;">❌</button>
+      </div>
+      
+      <!-- Password Protection View -->
+      <div id="adminAuth">
+        <div class="form-group">
+          <label>Clave de Acceso:</label>
+          <input type="password" id="adminPass" placeholder="Ingresa contraseña">
         </div>
+        <button onclick="loginAdmin()" class="btn-wa" style="border-radius:6px;">Ingresar al Panel</button>
+      </div>
 
-        <h2 class="category-title">🏠 Hogar y Utilidades</h2>
-        <div class="grid">
-            <div class="card">
-                <span class="badge-oferta">DESTACADO</span>
-                <h3>Organizadores Portátiles</h3>
-                <p>Soluciones prácticas para mantener tu casa ordenada, ahorrar espacio y facilitar tus tareas.</p>
-                <a href="https://wa.me/51902160927?text=Hola%2C%20quiero%20ver%20los%20organizadores%20portátiles%20para%20el%20hogar" class="btn-whatsapp" target="_blank">Consultar por WhatsApp</a>
-            </div>
-            <div class="card">
-                <h3>Artículos Utilitarios</h3>
-                <p>Productos funcionales seleccionados para optimizar la comodidad de tu hogar.</p>
-                <a href="https://wa.me/51902160927?text=Hola%2C%20deseo%20información%20sobre%20los%20artículos%20utilitarios" class="btn-whatsapp" target="_blank">Consultar por WhatsApp</a>
-            </div>
+      <!-- Dashboard View -->
+      <div id="adminDashboard" style="display: none;">
+        <h4 style="font-size: 0.85rem; margin-bottom: 10px;">➕ Agregar Nuevo Producto</h4>
+        <div class="form-group">
+          <label>Nombre del Producto</label>
+          <input type="text" id="prodName" placeholder="Ej: Perfume Ccori Yanbal">
         </div>
+        <div class="form-group">
+          <label>Categoría</label>
+          <select id="prodCat">
+            <option value="yanbal">Cosméticos Yanbal</option>
+            <option value="hogar">Organizadores Hogar</option>
+            <option value="combos">Kits & Combos</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Precio (S/)</label>
+          <input type="number" id="prodPrice" step="0.1" placeholder="49.90">
+        </div>
+        <div class="form-group">
+          <label>Stock Inicial</label>
+          <input type="number" id="prodStock" placeholder="5">
+        </div>
+        <div class="form-group">
+          <label>URL de Foto</label>
+          <input type="text" id="prodImg" placeholder="https://link-de-la-foto.jpg">
+        </div>
+        <button onclick="addProduct()" class="btn-wa" style="border-radius:6px; margin-bottom: 15px;">Guardar Producto</button>
+
+        <h4 style="font-size: 0.85rem; margin-bottom: 10px;">📦 Inventario Actual</h4>
+        <div id="adminProductList"></div>
+      </div>
+
     </div>
+  </div>
 
-    <footer>
-        <p>© 2026 Todo Útil Perú Store - Pedidos y entregas directas. Contacto: 902 160 927</p>
-    </footer>
+  <script>
+    // Initial Stock & Product Data
+    const defaultProducts = [
+      { id: 1, name: "Perfume Ccori Yanbal 50ml", cat: "yanbal", price: 89.90, stock: 3, badge: "OFERTA", img: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=300&q=80" },
+      { id: 2, name: "Organizador de Calzado 4 Niveles", cat: "hogar", price: 35.00, stock: 5, badge: "MÁS VENDIDO", img: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=300&q=80" },
+      { id: 3, name: "Set 3 Labiales Hydra-Full Yanbal", cat: "combos", price: 45.00, stock: 2, badge: "KIT COMBO", img: "https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&w=300&q=80" },
+      { id: 4, name: "Cesta Plegable para Ropa Multiuso", cat: "hogar", price: 22.90, stock: 4, badge: "ÚTILES", img: "https://images.unsplash.com/photo-1591088398332-8a7791972843?auto=format&fit=crop&w=300&q=80" }
+    ];
 
+    let products = JSON.parse(localStorage.getItem('todoUtilProducts')) || defaultProducts;
+    let selectedCat = 'todos';
+    let quantities = {};
+
+    function saveProducts() {
+      localStorage.setItem('todoUtilProducts', JSON.stringify(products));
+      renderProducts();
+      renderAdminList();
+    }
+
+    // Render Products on Frontend
+    function renderProducts() {
+      const grid = document.getElementById('productGrid');
+      const search = document.getElementById('searchInput').value.toLowerCase();
+      grid.innerHTML = '';
+
+      products.filter(p => {
+        const matchesCat = selectedCat === 'todos' || p.cat === selectedCat;
+        const matchesSearch = p.name.toLowerCase().includes(search);
+        return matchesCat && matchesSearch;
+      }).forEach(p => {
+        if (!quantities[p.id]) quantities[p.id] = 1;
+
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        card.innerHTML = `
+          <span class="badge">${p.badge}</span>
+          <img src="${p.img}" class="product-img" alt="${p.name}">
+          <div class="product-title">${p.name}</div>
+          <div class="product-price">S/ ${parseFloat(p.price).toFixed(2)}</div>
+          <div class="product-stock">⚠️ ¡Solo quedan ${p.stock} unidades!</div>
+          
+          <div class="qty-picker">
+            <button class="qty-btn" onclick="updateQty(${p.id}, -1)">-</button>
+            <span class="qty-val">${quantities[p.id]}</span>
+            <button class="qty-btn" onclick="updateQty(${p.id}, 1)">+</button>
+          </div>
+
+          <a href="https://wa.me/51902160927?text=${encodeURIComponent(`Hola Todo Útil Perú Store, quiero pedir ${quantities[p.id]} unidad(es) de ${p.name} a S/ ${(p.price * quantities[p.id]).toFixed(2)}.`)}" class="btn-wa" target="_blank">
+            📲 Pedir por WA
+          </a>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function updateQty(id, change) {
+      if (!quantities[id]) quantities[id] = 1;
+      quantities[id] = Math.max(1, quantities[id] + change);
+      renderProducts();
+    }
+
+    function setCategory(cat, btn) {
+      selectedCat = cat;
+      document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderProducts();
+    }
+
+    function filterProducts() { renderProducts(); }
+
+    // 💣 Oferta Bomba Secret Trigger
+    function revealBombaSecret() {
+      document.getElementById('bombaCover').style.display = 'none';
+      document.getElementById('bombaSecret').style.display = 'block';
+      const waLink = `https://wa.me/51902160927?text=${encodeURIComponent('Hola Todo Útil Perú Store, ¡deseo reclamar la OFERTA BOMBA del Set Yanbal a S/ 49.90!')}`;
+      document.getElementById('bombaWaBtn').href = waLink;
+    }
+
+    // Timers Simulation
+    function startTimers() {
+      let time = 8100;
+      setInterval(() => {
+        if(time > 0) time--;
+        let hrs = String(Math.floor(time/3600)).padStart(2,'0');
+        let mins = String(Math.floor((time%3600)/60)).padStart(2,'0');
+        let secs = String(time%60).padStart(2,'0');
+        document.getElementById('bombaTimer').innerText = `${hrs}:${mins}:${secs}`;
+      }, 1000);
+    }
+
+    // Social Proof Randomizer
+    const buyers = ["María de La Victoria", "Carla de San Borja", "Elena de Lince", "Lucía de Miraflores"];
+    const boughtItems = ["Set Yanbal Totalist", "Organizador de Zapatos", "Labial Hydra Yanbal"];
+    setInterval(() => {
+      const u = buyers[Math.floor(Math.random() * buyers.length)];
+      const i = boughtItems[Math.floor(Math.random() * boughtItems.length)];
+      document.getElementById('spUser').innerText = u;
+      document.getElementById('spProduct').innerText = i;
+    }, 9000);
+
+    // Admin Modal Logic
+    function openAdmin() { document.getElementById('adminModal').style.display = 'flex'; }
+    function closeAdmin() { document.getElementById('adminModal').style.display = 'none'; }
+    function loginAdmin() {
+      if(document.getElementById('adminPass').value === '1234') {
+        document.getElementById('adminAuth').style.display = 'none';
+        document.getElementById('adminDashboard').style.display = 'block';
+        renderAdminList();
+      } else { alert('Clave incorrecta'); }
+    }
+
+    function addProduct() {
+      const name = document.getElementById('prodName').value;
+      const cat = document.getElementById('prodCat').value;
+      const price = parseFloat(document.getElementById('prodPrice').value);
+      const stock = parseInt(document.getElementById('prodStock').value);
+      const img = document.getElementById('prodImg').value || 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=300&q=80';
+
+      if(name && price && stock) {
+        products.push({ id: Date.now(), name, cat, price, stock, badge: "NUEVO", img });
+        saveProducts();
+        alert('¡Producto guardado!');
+      }
+    }
+
+    function deleteProduct(id) {
+      products = products.filter(p => p.id !== id);
+      saveProducts();
+    }
+
+    function renderAdminList() {
+      const list = document.getElementById('adminProductList');
+      list.innerHTML = '';
+      products.forEach(p => {
+        list.innerHTML += `
+          <div class="admin-list-item">
+            <div><strong>${p.name}</strong> - S/ ${p.price} (Stock: ${p.stock})</div>
+            <button onclick="deleteProduct(${p.id})" style="background:red; color:white; border:none; border-radius:4px; padding:2px 6px; cursor:pointer;">🗑️</button>
+          </div>
+        `;
+      });
+    }
+
+    // Init App
+    renderProducts();
+    startTimers();
+  </script>
 </body>
 </html>
