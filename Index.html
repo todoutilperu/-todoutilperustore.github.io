@@ -3,148 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todo Útil Perú Store - Catálogo Oficial</title>
+    <title>Todo Útil Perú Store | Cosméticos Yanbal y Hogar</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-        body {
-            background-color: #f9f9f9;
-            color: #333;
-            padding-bottom: 80px;
-        }
-        header {
-            background-color: #d81b60;
-            color: white;
-            text-align: center;
-            padding: 25px 15px;
-        }
-        header h1 {
-            font-size: 24px;
-            margin-bottom: 5px;
-        }
-        header p {
-            font-size: 14px;
-            opacity: 0.9;
-        }
-        .container {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 0 15px;
-        }
-        .section-title {
-            font-size: 18px;
-            color: #d81b60;
-            margin-bottom: 15px;
-            border-bottom: 2px solid #d81b60;
-            padding-bottom: 5px;
-        }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-        .card {
-            background: white;
-            border-radius: 8px;
-            padding: 15px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-        .card h3 {
-            font-size: 16px;
-            margin-bottom: 8px;
-            color: #222;
-        }
-        .card p {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 12px;
-        }
-        .btn-whatsapp {
-            display: inline-block;
-            background-color: #25d366;
-            color: white;
-            text-decoration: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            font-weight: bold;
-            font-size: 14px;
-            width: 100%;
-            text-align: center;
-        }
-        .whatsapp-float {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #25d366;
-            color: white;
-            padding: 12px 20px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            z-index: 1000;
-        }
-        footer {
-            text-align: center;
-            padding: 20px;
-            font-size: 12px;
-            color: #888;
-            background-color: #fff;
-            margin-top: 40px;
-            border-top: 1px solid #eee;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; }
+        body { background-color: #f8f9fa; color: #212529; line-height: 1.5; }
+        
+        /* Banner deslizante */
+        .marquee-container { background: #d63384; color: white; overflow: hidden; white-space: nowrap; padding: 0.5rem 0; font-size: 0.9rem; font-weight: bold; }
+        .marquee-text { display: inline-block; animation: marquee 18s linear infinite; }
+        @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+
+        header { background: linear-gradient(135deg, #2c3e50, #1a252f); color: white; text-align: center; padding: 1.5rem 1rem; }
+        header h1 { font-size: 1.8rem; margin-bottom: 0.3rem; }
+        header p { font-size: 0.95rem; opacity: 0.9; }
+
+        /* Aviso de compra en vivo */
+        .live-alert { background: #e8f5e9; color: #2e7d32; text-align: center; padding: 0.5rem; font-size: 0.85rem; font-weight: 500; border-bottom: 1px solid #c8e6c9; }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 1rem; }
+        .category-title { font-size: 1.3rem; margin: 1.5rem 0 1rem; color: #2c3e50; border-bottom: 2px solid #e9ecef; padding-bottom: 0.3rem; }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
+        .card { background: white; border-radius: 10px; padding: 1rem; box-shadow: 0 2px 5px rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; }
+        
+        /* Etiqueta de Oferta */
+        .badge-oferta { position: absolute; top: 10px; right: 10px; background: #ff4757; color: white; font-size: 0.75rem; font-weight: bold; padding: 0.2rem 0.5rem; border-radius: 4px; }
+
+        .card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; color: #333; }
+        .card p { font-size: 0.9rem; color: #666; margin-bottom: 1rem; }
+        .btn-whatsapp { background-color: #25d366; color: white; text-decoration: none; text-align: center; padding: 0.6rem; border-radius: 5px; font-weight: bold; font-size: 0.95rem; display: block; }
+        
+        footer { text-align: center; padding: 2rem; color: #888; font-size: 0.85rem; }
     </style>
 </head>
 <body>
 
+    <!-- Banner en movimiento -->
+    <div class="marquee-container">
+        <div class="marquee-text">🔥 ¡Bienvenidos a Todo Útil Perú Store! Envios seguros a todo Lima y provincias. 🚚 Cosméticos Yanbal originales y organizadores para el hogar al mejor precio. ✨</div>
+    </div>
+
     <header>
         <h1>Todo Útil Perú Store</h1>
-        <p>Productos Yanbal y Artículos Prácticos para el Hogar</p>
+        <p>Cosméticos Yanbal y Artículos Útiles para el Hogar</p>
     </header>
 
+    <!-- Alerta de compra reciente -->
+    <div class="live-alert">
+        🛍️ ¡María de La Victoria acaba de separar su set de perfumes Yanbal hace un momento!
+    </div>
+
     <div class="container">
-        
-        <h2 class="section-title">✨ Fragancias y Cosméticos Yanbal</h2>
+        <h2 class="category-title">✨ Cosméticos y Fragancias Yanbal</h2>
         <div class="grid">
             <div class="card">
-                <h3>Perfumes y Lociones Exclusivas</h3>
-                <p>Variedad de aromas y líneas para dama y caballero.</p>
-                <a href="https://wa.me/51902160927?text=Hola%20Todo%20Útil%20Perú,%20deseo%20consultar%20por%20los%20perfumes%20Yanbal" class="btn-whatsapp" target="_blank">Consultar por WhatsApp</a>
+                <span class="badge-oferta">OFERTA</span>
+                <h3>Perfumes y Colonias</h3>
+                <p>Fragancias exclusivas para dama y caballero con excelente fijación y descuento especial.</p>
+                <a href="https://wa.me/51902160927?text=Hola%2C%20quiero%20consultar%20el%20catálogo%20y%20ofertas%20de%20perfumes%20Yanbal" class="btn-whatsapp" target="_blank">Consultar por WhatsApp</a>
             </div>
             <div class="card">
-                <h3>Maquillaje y Cuidado Personal</h3>
-                <p>Productos originales para Resaltar tu belleza.</p>
-                <a href="https://wa.me/51902160927?text=Hola%20Todo%20Útil%20Perú,%20deseo%20ver%20el%20catálogo%20de%20maquillaje" class="btn-whatsapp" target="_blank">Consultar por WhatsApp</a>
+                <h3>Maquillaje y Cuidado</h3>
+                <p>Polvos, labiales, tratamientos faciales y alta cosmética de temporada.</p>
+                <a href="https://wa.me/51902160927?text=Hola%2C%20estoy%20interesada%20en%20los%20productos%20de%20maquillaje%20Yanbal" class="btn-whatsapp" target="_blank">Consultar por WhatsApp</a>
             </div>
         </div>
 
-        <h2 class="section-title">🏡 Organizadores y Utilidades para el Hogar</h2>
+        <h2 class="category-title">🏠 Hogar y Utilidades</h2>
         <div class="grid">
             <div class="card">
+                <span class="badge-oferta">DESTACADO</span>
                 <h3>Organizadores Portátiles</h3>
-                <p>Soluciones prácticas para mantener tu espacio ordenado.</p>
-                <a href="https://wa.me/51902160927?text=Hola%20Todo%20Útil%20Perú,%20estoy%20interesada%20en%20los%20organizadores%20para%20el%20hogar" class="btn-whatsapp" target="_blank">Consultar por WhatsApp</a>
+                <p>Soluciones prácticas para mantener tu casa ordenada, ahorrar espacio y facilitar tus tareas.</p>
+                <a href="https://wa.me/51902160927?text=Hola%2C%20quiero%20ver%20los%20organizadores%20portátiles%20para%20el%20hogar" class="btn-whatsapp" target="_blank">Consultar por WhatsApp</a>
             </div>
             <div class="card">
                 <h3>Artículos Utilitarios</h3>
-                <p>Productos funcionales y de gran utilidad diaria.</p>
-                <a href="https://wa.me/51902160927?text=Hola%20Todo%20Útil%20Perú,%20deseo%20más%20información%20de%20los%20artículos%20utilitarios" class="btn-whatsapp" target="_blank">Consultar por WhatsApp</a>
+                <p>Productos funcionales seleccionados para optimizar la comodidad de tu hogar.</p>
+                <a href="https://wa.me/51902160927?text=Hola%2C%20deseo%20información%20sobre%20los%20artículos%20utilitarios" class="btn-whatsapp" target="_blank">Consultar por WhatsApp</a>
             </div>
         </div>
-
     </div>
 
-    <!-- Botón flotante de WhatsApp -->
-    <a href="https://wa.me/51902160927?text=Hola%20Todo%20Útil%20Perú,%20vengo%20de%20su%20web%20y%20quiero%20hacer%20un%20pedido" class="whatsapp-float" target="_blank">💬 ¡Escríbenos al WhatsApp!</a>
-
     <footer>
-        <p>&copy; 2026 Todo Útil Perú Store. Todos los derechos reservados.</p>
+        <p>© 2026 Todo Útil Perú Store - Pedidos y entregas directas. Contacto: 902 160 927</p>
     </footer>
 
 </body>
