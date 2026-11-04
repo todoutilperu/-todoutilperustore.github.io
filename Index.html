@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo Útil Perú Store - Catálogo Oficial</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            padding-bottom: 80px;
+        }
+        header {
+            background-color: #d81b60;
+            color: white;
+            text-align: center;
+            padding: 25px 15px;
+        }
+        header h1 {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+        .section-title {
+            font-size: 18px;
+            color: #d81b60;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #d81b60;
+            padding-bottom: 5px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .card h3 {
+            font-size: 16px;
+            margin-bottom: 8px;
+            color: #222;
+        }
+        .card p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+        .btn-whatsapp {
+            display: inline-block;
+            background-color: #25d366;
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 14px;
+            width: 100%;
+            text-align: center;
+        }
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25d366;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 12px;
+            color: #888;
+            background-color: #fff;
+            margin-top: 40px;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Todo Útil Perú Store</h1>
+        <p>Productos Yanbal y Artículos Prácticos para el Hogar</p>
+    </header>
+
+    <div class="container">
+        
+        <h2 class="section-title">✨ Fragancias y Cosméticos Yanbal</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Perfumes y Lociones Exclusivas</h3>
+                <p>Variedad de aromas y líneas para dama y caballero.</p>
+                <a href="https://wa.me/51902160927?text=Hola%20Todo%20Útil%20Perú,%20deseo%20consultar%20por%20los%20perfumes%20Yanbal" class="btn-whatsapp" target="_blank">Consultar por WhatsApp</a>
+            </div>
+            <div class="card">
+                <h3>Maquillaje y Cuidado Personal</h3>
+                <p>Productos originales para Resaltar tu belleza.</p>
+                <a href="https://wa.me/51902160927?text=Hola%20Todo%20Útil%20Perú,%20deseo%20ver%20el%20catálogo%20de%20maquillaje" class="btn-whatsapp" target="_blank">Consultar por WhatsApp</a>
+            </div>
+        </div>
+
+        <h2 class="section-title">🏡 Organizadores y Utilidades para el Hogar</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Organizadores Portátiles</h3>
+                <p>Soluciones prácticas para mantener tu espacio ordenado.</p>
+                <a href="https://wa.me/51902160927?text=Hola%20Todo%20Útil%20Perú,%20estoy%20interesada%20en%20los%20organizadores%20para%20el%20hogar" class="btn-whatsapp" target="_blank">Consultar por WhatsApp</a>
+            </div>
+            <div class="card">
+                <h3>Artículos Utilitarios</h3>
+                <p>Productos funcionales y de gran utilidad diaria.</p>
+                <a href="https://wa.me/51902160927?text=Hola%20Todo%20Útil%20Perú,%20deseo%20más%20información%20de%20los%20artículos%20utilitarios" class="btn-whatsapp" target="_blank">Consultar por WhatsApp</a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Botón flotante de WhatsApp -->
+    <a href="https://wa.me/51902160927?text=Hola%20Todo%20Útil%20Perú,%20vengo%20de%20su%20web%20y%20quiero%20hacer%20un%20pedido" class="whatsapp-float" target="_blank">💬 ¡Escríbenos al WhatsApp!</a>
+
+    <footer>
+        <p>&copy; 2026 Todo Útil Perú Store. Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+</html>
